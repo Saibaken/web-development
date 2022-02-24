@@ -1,6 +1,7 @@
 import "../App.css";
 import React, { useState } from "react";
 import classNames from "classnames";
+import SideMenu from "./SideMenu";
 
 function SwitchingButton() {
   const [clicked, setClicked] = useState(false);
@@ -16,6 +17,8 @@ function SwitchingButton() {
     setClicked(!clicked);
   }
   return (
+    <>
+    <SideMenu page="chat"/>
     <div className="nav-bar">
       <button className={buttonClass} onClick={clickHandle}>
         <svg
@@ -28,6 +31,7 @@ function SwitchingButton() {
         <span className={textClass}>News</span>
       </button>
     </div>
+    </>
   );
 }
 

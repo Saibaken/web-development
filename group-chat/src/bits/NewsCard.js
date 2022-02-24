@@ -1,13 +1,8 @@
-import "../App.css";
-import React, { useState } from "react";
-import classNames from "classnames";
-import SwitchingButton from "./SwitchingButton";
+import React from 'react'
 
-function NewsPage() {
+export default function NewsCard() {
   return (
-    <div className="page-content">
-      <h1 className="page-header">News</h1>
-      <div className="news-card">
+    <div className="news-card">
         <h2 className="news-card-header">Header</h2>
         <h4 className="news-card-text">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
@@ -57,8 +52,5 @@ function NewsPage() {
           lacus.
         </h4>
       </div>
-    </div>
-  );
+  )
 }
-
-export default NewsPage;
