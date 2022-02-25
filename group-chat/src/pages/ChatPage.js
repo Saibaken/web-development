@@ -1,3 +1,4 @@
+import "../stylesheets/Chat.css"
 import React from 'react'
 import SideMenu from '../bits/SideMenu'
 import ChatWindow from '../bits/ChatWindow'

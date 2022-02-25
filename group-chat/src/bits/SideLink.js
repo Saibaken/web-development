@@ -1,3 +1,4 @@
+import "../stylesheets/SideMenu.css"
 import React from "react";
 import { Link } from "react-router-dom";
 import { MdPerson, MdEmail, MdFeed } from "react-icons/md";

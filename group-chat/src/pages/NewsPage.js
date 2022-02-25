@@ -1,4 +1,4 @@
-import "../App.css";
+import "../stylesheets/News.css";
 import React from "react";
 import NewsCard from "../bits/NewsCard";
 
