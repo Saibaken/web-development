@@ -1,6 +1,5 @@
 import React from "react";
 import SideLink from "./SideLink";
-import SwitchingButton from "./SwitchingButton";
 import classNames from "classnames";
 
 export default function SideMenu(props) {

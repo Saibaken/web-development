@@ -1,9 +1,7 @@
 import "../App.css";
-import React, { useState } from "react";
-import classNames from "classnames";
-import SwitchingButton from "../bits/SwitchingButton";
+import React from "react";
 import NewsCard from "../bits/NewsCard";
-import SideMenu from "../bits/SideMenu";
+
 
 function NewsPage() {
   return (
