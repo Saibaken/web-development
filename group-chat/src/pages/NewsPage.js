@@ -8,8 +8,8 @@ function NewsPage() {
     <>
     <div className="page-content">
       <h1 className="page-header">News</h1>
-      <NewsCard/>
-      <NewsCard/>
+      <NewsCard video="true"/>
+      <NewsCard image="true"/>
     </div>
     </>
   );
