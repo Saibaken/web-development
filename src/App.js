@@ -1,4 +1,4 @@
-import "./App.css";
+import "./stylesheets/App.css";
 import React from "react";
 import NewsPage from "./pages/NewsPage";
 import { Routes, Route } from "react-router-dom";

@@ -1,0 +1,22 @@
+.news-card {
+  background-color: white;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  padding: 15px;
+  width: 60vw;
+}
+
+div.news-image {
+  width: 300px;
+  margin: auto;
+  margin-top: 15px;
+}
+
+
+.news-card-header {
+  font-weight: 600;
+}
+
+.news-card-text {
+  font-weight: 400;
+}
