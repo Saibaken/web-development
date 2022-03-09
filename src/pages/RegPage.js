@@ -1,7 +1,9 @@
 import React from 'react'
 
 export default function RegPage() {
-  return (
-    <div>RegPage</div>
-  )
+
+    //TODO: Написать реализацию (см. LoginPage)
+    return (
+        <div>RegPage</div>
+    )
 }
