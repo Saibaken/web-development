@@ -10,8 +10,10 @@ export default function LoginPage() {
     function validate() {
         let login = document.getElementById('POST-login').value;
 
-        if (login !== null)
+        if (login !== null) {
+            localStorage.setItem("id", JSON.stringify(login))
             navigate("/" + login + "/news");
+        }
     }
 
     return (

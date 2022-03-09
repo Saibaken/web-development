@@ -3,6 +3,8 @@ import SideLink from "./SideLink";
 import classNames from "classnames";
 
 export default function SideMenu(props) {
+  const id = JSON.parse(localStorage.getItem("id"));
+
   const sideMenuClass = classNames("side-menu",
     {
       "side-menu-news": props.page === "news",
@@ -12,9 +14,9 @@ export default function SideMenu(props) {
 
   return (
     <ol className={sideMenuClass}>
-      <SideLink className="side-link-text" text="News" link="/news" />
-      <SideLink className="side-link-text" text="Chat" link="/chat" />
-      <SideLink className="side-link-text" text="My profile" link="/my_profile" />
+      <SideLink className="side-link-text" text="News" link={"/" + id + "/news"} />
+      <SideLink className="side-link-text" text="Chat" link={"/" + id + "/chat"} />
+      <SideLink className="side-link-text" text="My profile" link={"/" + id + "/my_profile"} />
     </ol>
   );
 }
