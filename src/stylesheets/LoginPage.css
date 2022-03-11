@@ -85,3 +85,22 @@ form.login-form>a:hover {
     margin-top: 15px;
     color: #406892;
 }
+
+form.register {
+    height: 80vh;
+    margin: 12.5vh 20vw 12.5vh 20vw;
+}
+
+span.errorMessage {
+    color: red;
+}
+
+span.noError {
+    display: none;
+}
+
+form.login-form input[type=submit]:disabled {
+    cursor: default;
+    background-color: #888888;
+    box-shadow: none;
+}
