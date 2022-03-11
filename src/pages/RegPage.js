@@ -1,7 +1,11 @@
 import { React, useRef } from "react";
 import "../stylesheets/LoginPage.css";
+import { useNavigate } from 'react-router-dom'
+import { v4 } from 'uuid'
 
 export default function RegPage() {
+    let navigate = useNavigate()
+
   const passwordRef = useRef();
   const confirmRef = useRef();
   const loginRef = useRef();
@@ -75,9 +79,16 @@ export default function RegPage() {
     confirmValidation();
   };
 
+  const sendForm = (e) => {
+    e.preventDefault()
+    
+    localStorage.setItem('id', JSON.stringify(v4()))
+    navigate('/' + v4() + '/news')
+}
+
 
   return (
-    <form className="login-form register" ref={formRef} onInput={(e) => validate(e)}>
+    <form className="login-form register" onSubmit={(e) => sendForm(e)} ref={formRef} onInput={(e) => validate(e)}>
       <label>
         Login
         <input

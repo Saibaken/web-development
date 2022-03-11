@@ -58,6 +58,7 @@ form.login-form>label {
     color: #000000;
 }
 
+form.login-form input[type=text],
 form.login-form input[type=email],
 form.login-form input[type=password] {
     margin-top: 10px;
@@ -76,12 +77,14 @@ form.login-form input[type=password] {
     color: #000000;
 }
 
+form.login-form input[type=text]:focus,
 form.login-form input[type=email]:focus,
 form.login-form input[type=password]:focus
 {
     outline: none;
 }
 
+form.login-form input[type=text]:focus:invalid,
 form.login-form input[type=email]:focus:invalid,
 form.login-form input[type=password]:focus:invalid {
     border-color: red;
