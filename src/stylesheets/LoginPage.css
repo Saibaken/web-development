@@ -91,13 +91,6 @@ form.register {
     margin: 12.5vh 20vw 12.5vh 20vw;
 }
 
-span.errorMessage {
-    color: red;
-}
-
-span.noError {
-    display: none;
-}
 
 form.login-form input[type=submit]:disabled {
     cursor: default;

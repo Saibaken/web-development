@@ -1,171 +1,130 @@
-import { React, useState, useRef, useEffect } from "react";
+import { React, useRef } from "react";
 import "../stylesheets/LoginPage.css";
-import classNames from "classnames";
-export default function RegPage() {
-  const [login, setLogin] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirm, setConfirm] = useState("");
-  const [loginDirty, setLoginDirty] = useState(false);
-  const [emailDirty, setEmailDirty] = useState(false);
-  const [passwordDirty, setPasswordDirty] = useState(false);
-  const [confirmDirty, setConfirmDirty] = useState(false);
-  const [emailError, setEmailError] = useState(false);
-  const [confirmError, setConfirmError] = useState(false);
-  const [passwordError, setPasswordError] = useState(false);
-  const [loginError, setLoginError] = useState(false);
-  const [formValid, setFormValid] = useState(false);
 
+export default function RegPage() {
   const passwordRef = useRef();
   const confirmRef = useRef();
+  const loginRef = useRef();
+  const emailRef = useRef();
+  const formRef = useRef();
 
-  const emailErrorClass = classNames({
-    errorMessage: emailDirty || emailError,
-    noError: !emailError,
-  });
-  const passwordErrorClass = classNames({
-    errorMessage: passwordDirty || passwordError,
-    noError: !passwordError,
-  });
-  const confirmErrorClass = classNames({
-    errorMessage: confirmDirty || confirmError,
-    noError: !confirmError,
-  });
-  const loginErrorClass = classNames({
-    errorMessage: loginDirty || loginError,
-    noError: !loginError,
-  });
-
-  useEffect(() => {
-    if (loginError || emailError || passwordError || confirmError) {
-      setFormValid(false);
-    } else {
-      setFormValid(true);
-    }
-  }, [loginError, emailError, passwordError, confirmError]);
-
-  const loginHandler = (e) => {
-    setLogin(e.target.value);
-    const loginRegex = /([a-z0-9]{4,20})\w+/gi;
-    if (!loginRegex.test(String(e.target.value).toLowerCase())) {
-      setLoginError(true);
-    } else {
-      setLoginError(false);
-    }
-  };
-
-  const emailHandler = (e) => {
-    setEmail(e.target.value);
-    const emailRegex = /^\S+@\S+\.\S+$/;
-    if (!emailRegex.test(String(e.target.value).toLowerCase())) {
-      setEmailError(true);
-    } else {
-      setEmailError(false);
-    }
-  };
-
-  const passwordHandler = (e) => {
-    setPassword(e.target.value);
-    confirmValidation();
-    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,25}$/;
-    if (!passwordRegex.test(String(e.target.value).toLowerCase())) {
-      setPasswordError(true);
-    } else {
-      setPasswordError(false);
-    }
-  };
-
-  const confirmValidation = () => {
-    if (passwordRef.current.value == confirmRef.current.value) {
-      setConfirmError(false);
-    } else {
-      setConfirmError(true);
-    }
-  };
-
-  const confirmHandler = (e) => {
-    setConfirm(e.target.value);
-    confirmValidation();
-  };
-
-  const blurHandler = (e) => {
-    switch (e.target.name) {
+  const validate = (e) => {
+    const name = e.target.name;
+    switch (name) {
       case "login":
-        setLoginDirty(true);
-        break;
-      case "email":
-        setEmailDirty(true);
+        loginValidityHandler(e.target);
         break;
       case "password":
-        setPasswordDirty(true);
+        passwordValidityHandler(e.target);
         break;
-      case "confirm":
-        setConfirmDirty(true);
+      case "email":
+        emailValidityHandler(e.target);
+        break;
+      case "password-confirm":
+        confirmValidation();
         break;
       default:
         break;
     }
   };
 
+  const loginValidityHandler = (field) => {
+    if (field.validity.valueMissing) {
+      field.setCustomValidity("Login field must not be empty");
+    } else if (field.validity.tooShort) {
+      field.setCustomValidity("Login should be >4 letters");
+    } else if (field.validity.tooLong) {
+      field.setCustomValidity("Login should be <20 letters");
+    } else {
+      field.setCustomValidity("");
+    }
+  };
+
+  const emailValidityHandler = (field) => {
+    if (field.validity.valueMissing) {
+      field.setCustomValidity("Email must not be empty");
+    } else if (field.validity.patternMismatch) {
+      field.setCustomValidity("This is not an email address!");
+    } else {
+      field.setCustomValidity("");
+    }
+  };
+
+  const confirmValidation = () => {
+    if (passwordRef.current.value === confirmRef.current.value) {
+      confirmRef.current.setCustomValidity("");
+    } else {
+      confirmRef.current.setCustomValidity("Passwords should be the same!");
+    }
+  };
+
+  const passwordValidityHandler = (field) => {
+    if (field.validity.valueMissing) {
+      field.setCustomValidity("Password field must not be empty");
+    } else if (field.validity.tooShort) {
+      field.setCustomValidity("Password should be >8 letters");
+    } else if (field.validity.tooLong) {
+      field.setCustomValidity("Password should be <25 letters");
+    } else if (field.validity.patternMismatch) {
+      field.setCustomValidity(
+        "Password should contain at least 1 letter and 1 number"
+      );
+    } else {
+      field.setCustomValidity("");
+    }
+    confirmValidation();
+  };
+
+
   return (
-    <form className="login-form register">
+    <form className="login-form register" ref={formRef} onInput={(e) => validate(e)}>
       <label>
         Login
         <input
           id="POST-login"
           type="text"
           name="login"
-          value={login}
-          onChange={(e) => loginHandler(e)}
+          required
+          minLength={4}
+          maxLength={20}
+          ref={loginRef}
         />
       </label>
-      <span className={loginErrorClass}>
-        {" "}
-        Login must be 4-20 characters long{" "}
-      </span>
       <label>
         E-mail
         <input
-          onBlur={(e) => blurHandler(e)}
           id="POST-email"
           type="text"
           name="email"
-          value={email}
-          onChange={(e) => emailHandler(e)}
+          required
+          pattern="^\S+@\S+\.\S+$"
+          ref={emailRef}
         />
       </label>
-      <span className={emailErrorClass}> Incorrect email address </span>
       <label>
         Password
         <input
-          onBlur={(e) => blurHandler(e)}
           id="POST-password"
           type="password"
           name="password"
-          value={password}
+          required
+          minLength={8}
+          maxLength={25}
+          pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,25}$"
           ref={passwordRef}
-          onChange={(e) => passwordHandler(e)}
         />
       </label>
-      <span className={passwordErrorClass}>
-        {" "}
-        Password should contain minimum eight characters, at least one letter
-        and one number{" "}
-      </span>
       <label>
         Confirm password
         <input
-          onBlur={(e) => blurHandler(e)}
           id="POST-password-confirm"
           type="password"
           name="password-confirm"
-          value={confirm}
+          required
           ref={confirmRef}
-          onChange={(e) => confirmHandler(e)}
         />
       </label>
-      <span className={confirmErrorClass}> Passwords should be the same </span>
-      <input disabled={!formValid} type="submit" value="Register"></input>
+      <input type="submit" value="Register"></input>
     </form>
   );
 }
