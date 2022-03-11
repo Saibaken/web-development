@@ -82,16 +82,6 @@ form.login-form input[type=password]:focus
     outline: none;
 }
 
-form.login-form input[type=email]:valid,
-form.login-form input[type=password]:valid {
-    border-color: #1E79CD;
-}
-
-form.login-form input[type=email]:not(:focus):invalid,
-form.login-form input[type=password]:not(:focus):invalid {
-    border-color: red;
-}
-
 form.login-form input[type=email]:focus:invalid,
 form.login-form input[type=password]:focus:invalid {
     border-color: red;
