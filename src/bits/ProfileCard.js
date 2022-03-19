@@ -7,7 +7,7 @@ export default function ProfileCard() {
   const onLogOut = () => {
     localStorage.setItem("id", JSON.stringify(null));
     navigate("/");
-  }
+  };
 
   return (
     <div className="profile-window">

@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom"
 import { v4 } from "uuid"
 
 export default function RegPage() {
-    let navigate = useNavigate()
+  let navigate = useNavigate();
 
   const passwordRef = useRef();
   const confirmRef = useRef();
@@ -84,7 +84,7 @@ export default function RegPage() {
     
     localStorage.setItem("id", JSON.stringify(v4()))
     navigate("/" + v4() + "/news")
-}
+  };
 
 
   return (

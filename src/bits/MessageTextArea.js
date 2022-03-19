@@ -6,5 +6,5 @@ export default function MessageTextArea() {
       <input className="text-area" type="text"></input>
       <button className="send-button">Send</button>
     </div>
-  )
+  );
 }

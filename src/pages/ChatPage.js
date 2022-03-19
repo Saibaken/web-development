@@ -8,5 +8,5 @@ export default function ChatPage() {
       <h1 className="page-header">Chat</h1>
       <ChatWindow />
     </div>
-  )
+  );
 }

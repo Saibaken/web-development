@@ -5,7 +5,7 @@ import "../stylesheets/LoginPage.css"
 
 export default function LoginPage() {
 
-    let navigate = useNavigate()
+    let navigate = useNavigate();
 
     const validate = (e) => {
         const name = e.target.name
@@ -18,7 +18,7 @@ export default function LoginPage() {
             default:
                 return
         }
-    }
+    };
 
     const validateLogin = (field) => {
         if (field.validity.typeMismatch) {
@@ -30,7 +30,7 @@ export default function LoginPage() {
         else {
             field.setCustomValidity("")
         }
-    }
+    };
 
     const validatePassword = (field) => {
         if (field.validity.valueMissing) {
@@ -46,14 +46,14 @@ export default function LoginPage() {
         else {
             field.setCustomValidity("")
         }
-    }
+    };
 
     const sendForm = (e) => {
         e.preventDefault()
 
         localStorage.setItem("id", JSON.stringify(v4()))
         navigate("/" + v4() + "/news")
-    }
+    };
 
     return (
         <form className="login-form" onSubmit={(event) => sendForm(event)} onInput={(event) => validate(event)} >
@@ -69,5 +69,5 @@ export default function LoginPage() {
             <input type="submit" value="Login"></input>
             <Link to="/registration">Create an account</Link>
         </form>
-    )
+    );
 }
