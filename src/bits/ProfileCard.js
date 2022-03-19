@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 export default function ProfileCard() {
   const navigate = useNavigate();
 
-  function onLogOut() {
+  const onLogOut = () => {
     localStorage.setItem("id", JSON.stringify(null));
     navigate("/");
   }

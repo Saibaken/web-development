@@ -1,6 +1,6 @@
 import "../stylesheets/Chat.css"
-import React from 'react'
-import ChatWindow from '../bits/ChatWindow'
+import React from "react"
+import ChatWindow from "../bits/ChatWindow"
 
 export default function ChatPage() {
   return (

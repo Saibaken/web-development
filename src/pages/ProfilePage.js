@@ -1,6 +1,6 @@
 import "../stylesheets/Profile.css"
-import React from 'react'
-import ProfileCard from '../bits/ProfileCard'
+import React from "react"
+import ProfileCard from "../bits/ProfileCard"
 
 export default function ProfilePage() {
   return (

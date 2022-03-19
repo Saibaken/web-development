@@ -1,7 +1,7 @@
 import { React, useRef } from "react";
 import "../stylesheets/LoginPage.css";
-import { useNavigate } from 'react-router-dom'
-import { v4 } from 'uuid'
+import { useNavigate } from "react-router-dom"
+import { v4 } from "uuid"
 
 export default function RegPage() {
     let navigate = useNavigate()
@@ -82,8 +82,8 @@ export default function RegPage() {
   const sendForm = (e) => {
     e.preventDefault()
     
-    localStorage.setItem('id', JSON.stringify(v4()))
-    navigate('/' + v4() + '/news')
+    localStorage.setItem("id", JSON.stringify(v4()))
+    navigate("/" + v4() + "/news")
 }
 
 
