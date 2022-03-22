@@ -94,6 +94,10 @@ export default function RegPage() {
         navigate("/" + v4() + "/news");
     };
     
+    localStorage.setItem("id", JSON.stringify(v4()))
+    navigate("/" + v4() + "/news")
+  };
+
     const buttonEnabled = () => {
         return (
             loginRef.current.validity.valid &&

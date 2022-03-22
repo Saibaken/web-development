@@ -1,6 +1,6 @@
 import "../stylesheets/Chat.css"
-import React from 'react'
-import ChatWindow from '../bits/ChatWindow'
+import React from "react"
+import ChatWindow from "../bits/ChatWindow"
 
 export default function ChatPage() {
   return (
@@ -8,5 +8,5 @@ export default function ChatPage() {
       <h1 className="page-header">Chat</h1>
       <ChatWindow />
     </div>
-  )
+  );
 }
