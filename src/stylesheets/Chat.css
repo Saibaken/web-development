@@ -10,7 +10,13 @@
   width: 60vw;
   height: 80vh;
   position: fixed;
-  /*overflow-y: scroll;*/
+}
+
+.messages {
+  display: flex;
+  flex-direction: column;
+  min-height: min-content;
+  overflow-y: auto;
 }
 
 .message-text-area {
