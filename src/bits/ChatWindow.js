@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import MessageTextArea from "./MessageTextArea";
 import Message from "./Message";
 import { v4 } from "uuid";
 
 export default function ChatWindow() {
-  const messages = [
+  const messagesRef = useRef();
+  const [messages, setMessages] = useState([
     {
       profileName: "Profile name",
       text: "Sample text"
@@ -21,12 +22,23 @@ export default function ChatWindow() {
       profileName: "Profile name",
       text: "Sample text"
     }
-  ];
+  ]);
+
+  useEffect(() => {
+    setMessages(JSON.parse(localStorage.getItem("messages")));
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("messages", JSON.stringify(messages));
+    messagesRef.current.scrollTop = messagesRef.current.scrollHeight;
+  });
 
   return (
     <div className="chat-window">
-      {messages.map(message => <Message key={v4()} author={message.profileName} text={message.text}/>)}
-      <MessageTextArea />
+      <div className="messages" ref={messagesRef}>
+        {messages.map(message => <Message key={v4()} author={message.profileName} text={message.text} />)}
+      </div>
+      <MessageTextArea messages={messages} setMessages={setMessages} />
     </div>
   );
 }
