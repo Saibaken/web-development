@@ -1,4 +1,5 @@
 import React, { useRef } from "react"
+import { sendNotification } from "../BotNotify";
 
 export default function MessageTextArea(props) {
 
@@ -6,14 +7,17 @@ export default function MessageTextArea(props) {
 
   const sendMessage = () => {
     let messageText = textRef.current.value;
+    let profileName = "Profile name";
 
-    if (messageText != "") {
+    if (messageText !== "") {
       props.setMessages([...props.messages, {
-        profileName: "Profile name",
+        profileName: profileName,
         text: messageText
       }]);
 
       textRef.current.value = "";
+
+      sendNotification(profileName, messageText);
     }
   }
 
