@@ -22,9 +22,9 @@ export default function MessageTextArea(props) {
   }
 
   return (
-    <div className="message-text-area">
+    <form className="message-text-area" onSubmit={sendMessage}>
       <input className="text-area" type="text" ref={textRef}></input>
       <button className="send-button" onClick={sendMessage}>Send</button>
-    </div>
+    </form>
   );
 }
