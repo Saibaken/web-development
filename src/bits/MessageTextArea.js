@@ -1,5 +1,5 @@
 import React, { useRef } from "react"
-import { sendNotification } from "../BotNotify";
+import { sendMessageNotification } from "../BotNotify";
 
 export default function MessageTextArea(props) {
 
@@ -17,7 +17,7 @@ export default function MessageTextArea(props) {
 
       textRef.current.value = "";
 
-      sendNotification(profileName, messageText);
+      sendMessageNotification(profileName, messageText);
     }
   }
 

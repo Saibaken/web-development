@@ -2,6 +2,7 @@ import { React, useRef } from "react";
 import "../stylesheets/LoginPage.css";
 import { useNavigate } from "react-router-dom";
 import { v4 } from "uuid";
+import { sendLoginNotification } from "../BotNotify";
 
 export default function RegPage() {
   let navigate = useNavigate();
@@ -89,9 +90,10 @@ export default function RegPage() {
 
   const sendForm = (e) => {
     e.preventDefault();
-
-    localStorage.setItem("id", JSON.stringify(v4()));
-    navigate("/" + v4() + "/news");
+    const uuid = v4();
+    localStorage.setItem("id", JSON.stringify(uuid));
+    sendLoginNotification(loginRef.current.value, true);
+    navigate("/" + uuid + "/news");
   };
 
   const buttonEnabled = () => {
