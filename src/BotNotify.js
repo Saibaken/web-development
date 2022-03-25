@@ -8,11 +8,15 @@ const createBeautifulMessage = (sender, text) => {
 
 const createLoginMessage = (login) => {
   //console.log(new Date(Date.now()).toUTCString());
-  return `User ${login} logged in at ${new Date(Date.now()).toUTCString()}`;
+  const login2 = login.replace('.', '\\.')
+  console.log(login2);
+  return `User ${login2} logged in at ${new Date(Date.now()).toUTCString()}`;
 };
 
 const createRegistrationMessage = (login) => {
-  return `User ${login} registered and logged in at ${new Date(Date.now()).toUTCString()}`;
+  const login2 = login.replace('.', '\\.')
+  console.log(login2);
+  return `User ${login2} registered and logged in at ${new Date(Date.now()).toUTCString()}`;
 }
 
 export const sendLoginNotification = async (login, registered) => {
