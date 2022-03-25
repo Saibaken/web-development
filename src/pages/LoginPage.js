@@ -24,7 +24,7 @@ export default function LoginPage() {
   };
 
   const validateLogin = (field) => {
-    if (field.validity.typeMismatch) {
+    if (field.validity.patternMismatch) {
       field.setCustomValidity("Must be email");
     } else if (field.validity.valueMissing) {
       field.setCustomValidity("Must not be empty");
@@ -69,7 +69,8 @@ export default function LoginPage() {
         <input
           required
           id="POST-login"
-          type="email"
+          type="text"
+          pattern="^\S+@\S+\.\S+$"
           name="login"
           ref={loginRef}
         />
