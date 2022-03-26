@@ -9,7 +9,7 @@ export default function SideMenu(props) {
     {
       "side-menu-news": props.page === "news",
       "side-menu-chat": props.page === "chat",
-      "side-menu-profile": props.page === "profile",
+      "side-menu-profile": props.page === "profile"
     });
 
   return (
