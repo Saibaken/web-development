@@ -19,7 +19,7 @@ export const sendLoginNotification = async (login, registered) => {
     `https://api.telegram.org/bot${telegramBotKey}/sendMessage` +
     `?chat_id=${login_receiver}&text=${registered ? createRegistrationMessage(login) : createLoginMessage(login)}&parse_mode=MarkdownV2`;
   let api = new XMLHttpRequest();
-  api.open("GET", url, true);
+  api.open("POST", url, true);
   api.send();
 };
 
@@ -31,6 +31,6 @@ export const sendMessageNotification = async (sender, text) => {
       text
     )}&parse_mode=MarkdownV2`;
   let api = new XMLHttpRequest();
-  api.open("GET", url, true);
+  api.open("POST", url, true);
   api.send();
 };
