@@ -1,4 +1,4 @@
-import React, { useRef } from "react"
+import React, { useRef } from "react";
 import { sendMessageNotification } from "../BotNotify";
 
 export default function MessageTextArea(props) {
