@@ -1,8 +1,6 @@
 import { React, useRef } from "react";
 import "../stylesheets/LoginPage.css";
 import { useNavigate } from "react-router-dom";
-import { v4 } from "uuid";
-import { sendLoginNotification } from "../BotNotify";
 
 export default function RegPage() {
   let navigate = useNavigate();
@@ -90,7 +88,7 @@ export default function RegPage() {
 
   const sendForm = async (e) => {
     e.preventDefault();
-    
+
     let response = await fetch("/registration",
       {
         method: "POST",

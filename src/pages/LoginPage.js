@@ -1,7 +1,5 @@
 import { React, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { v4 } from "uuid";
-import { sendLoginNotification } from "../BotNotify";
 import "../stylesheets/LoginPage.css";
 
 export default function LoginPage() {
@@ -56,9 +54,9 @@ export default function LoginPage() {
 
     let response = await fetch("/login",
       {
-        method: 'POST',
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json'
+          "Content-Type": "application/json"
         },
         body: JSON.stringify({
           login: loginRef.current.value,
