@@ -1,30 +1,35 @@
 import React, { useRef } from "react";
-import { sendMessageNotification } from "../BotNotify";
 
 export default function MessageTextArea(props) {
-
   const textRef = useRef();
 
-  const sendMessage = () => {
+  const sendMessage = async (e) => {
+    e.preventDefault();
     let messageText = textRef.current.value;
-    let profileName = "Profile name";
+    let userName = localStorage.getItem("userName").split('"').join("");
 
     if (messageText !== "") {
-      props.setMessages([...props.messages, {
-        profileName: profileName,
-        text: messageText
-      }]);
-
       textRef.current.value = "";
-
-      sendMessageNotification(profileName, messageText);
+      props.updateMessages();
+      fetch("/sendMessage", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          userName: userName,
+          messageBody: messageText,
+        }),
+      });
     }
-  }
+  };
 
   return (
     <form className="message-text-area" onSubmit={sendMessage}>
       <input className="text-area" type="text" ref={textRef}></input>
-      <button className="send-button" onClick={sendMessage}>Send</button>
+      <button className="send-button" onClick={sendMessage}>
+        Send
+      </button>
     </form>
   );
 }
