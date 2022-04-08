@@ -3,9 +3,11 @@ import { useNavigate } from "react-router-dom";
 
 export default function ProfileCard() {
   const navigate = useNavigate();
+  const userName = JSON.parse(localStorage.getItem("userName"));
 
   const onLogOut = () => {
-    localStorage.setItem("id", JSON.stringify(null));
+    localStorage.removeItem("id");
+    localStorage.removeItem("userName");
     navigate("/");
   };
 
@@ -19,7 +21,7 @@ export default function ProfileCard() {
             className="profile-picture"
           />
         </div>
-        <h3 className="profile-name">Profile Name</h3>
+        <h3 className="profile-name">{userName}</h3>
 
       </div>
       <button className="log-out-button" onClick={onLogOut}>

@@ -1,8 +1,6 @@
 import { React, useRef } from "react";
 import "../stylesheets/LoginPage.css";
 import { useNavigate } from "react-router-dom";
-import { v4 } from "uuid";
-import { sendLoginNotification } from "../BotNotify";
 
 export default function RegPage() {
   let navigate = useNavigate();
@@ -88,12 +86,30 @@ export default function RegPage() {
     confirmValidation();
   };
 
-  const sendForm = (e) => {
+  const sendForm = async (e) => {
     e.preventDefault();
-    const uuid = v4();
-    localStorage.setItem("id", JSON.stringify(uuid));
-    sendLoginNotification(loginRef.current.value, true);
-    navigate("/" + uuid + "/news");
+
+    let response = await fetch("/registration",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          login: emailRef.current.value,
+          userName: loginRef.current.value,
+          password: passwordRef.current.value
+        })
+      });
+
+    if (!response.ok)
+      alert("Пользователь с таким email уже существует");
+    else {
+      let userInfo = await response.json();
+      localStorage.setItem("id", JSON.stringify(userInfo.id));
+      localStorage.setItem("userName", JSON.stringify(userInfo.userName));
+      navigate("/" + userInfo.id + "/news");
+    }
   };
 
   const buttonEnabled = () => {

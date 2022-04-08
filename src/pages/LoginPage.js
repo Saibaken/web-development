@@ -1,12 +1,11 @@
 import { React, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { v4 } from "uuid";
-import { sendLoginNotification } from "../BotNotify";
 import "../stylesheets/LoginPage.css";
 
 export default function LoginPage() {
   let navigate = useNavigate();
   const loginRef = useRef();
+  const passRef = useRef();
 
   const validate = (e) => {
     const name = e.target.name;
@@ -39,7 +38,7 @@ export default function LoginPage() {
     } else if (field.validity.patternMismatch) {
       field.setCustomValidity(
         "A password must contain at least " +
-          "1 lower case letter, 1 upper case letter and 1 number"
+        "1 lower case letter, 1 upper case letter and 1 number"
       );
     } else if (field.validity.tooShort) {
       field.setCustomValidity(
@@ -50,12 +49,29 @@ export default function LoginPage() {
     }
   };
 
-  const sendForm = (e) => {
+  const sendForm = async (e) => {
     e.preventDefault();
-    const uuid = v4();
-    localStorage.setItem("id", JSON.stringify(uuid));
-    sendLoginNotification(loginRef.current.value, false);
-    navigate("/" + uuid + "/news");
+
+    let response = await fetch("/login",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          login: loginRef.current.value,
+          password: passRef.current.value
+        })
+      });
+
+    if (!response.ok)
+      alert("Неправильное имя пользователя или пароль")
+    else {
+      let userInfo = await response.json();
+      localStorage.setItem("id", JSON.stringify(userInfo.id));
+      localStorage.setItem("userName", JSON.stringify(userInfo.userName));
+      navigate("/" + userInfo.id + "/news");
+    }
   };
 
   return (
@@ -84,6 +100,7 @@ export default function LoginPage() {
           name="password"
           minLength={8}
           pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{0,}$"
+          ref={passRef}
         />
       </label>
       <input type="submit" value="Login"></input>
