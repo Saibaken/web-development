@@ -4,18 +4,16 @@ import { Link } from "react-router-dom";
 import { MdPerson, MdEmail, MdFeed } from "react-icons/md";
 
 export default function SideLink(props) {
-  const id = JSON.parse(localStorage.getItem("id"));
-
   return (
     <li className="side-link">
       <Link to={props.link} className="side-link-text">
         {(() => {
           switch (props.link) {
-            case "/" + id + "/news":
+            case "/news":
               return <MdFeed />;
-            case "/" + id + "/chat":
+            case "/chat":
               return <MdEmail />;
-            case "/" + id + "/my_profile":
+            case "/my_profile":
               return <MdPerson />;
             default:
               return <></>

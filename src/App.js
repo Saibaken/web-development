@@ -13,9 +13,9 @@ function App() {
       <Routes>
         <Route path="/" element={<LoginPage/>}/>
         <Route path="/registration" element={<RegPage/>}/>
-        <Route path="/:id/news" element={<><SideMenu page="news"/><NewsPage/></>}/>
-        <Route path="/:id/chat" element={<><SideMenu page="chat"/><ChatPage/></>}/>
-        <Route path="/:id/my_profile" element={<><SideMenu page="profile"/><ProfilePage/></>}/>
+        <Route path="/news" element={<><SideMenu page="news"/><NewsPage/></>}/>
+        <Route path="/chat" element={<><SideMenu page="chat"/><ChatPage/></>}/>
+        <Route path="/my_profile" element={<><SideMenu page="profile"/><ProfilePage/></>}/>
       </Routes>
   );
 }

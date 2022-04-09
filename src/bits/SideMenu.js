@@ -1,9 +1,13 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import SideLink from "./SideLink";
 import classNames from "classnames";
 
 export default function SideMenu(props) {
-  const id = JSON.parse(localStorage.getItem("id"));
+  const [id, setId] = useState(JSON.parse(localStorage.getItem("id")));
+
+  useEffect(() => {
+    setId(JSON.parse(localStorage.getItem("id")));
+  }, []);
 
   const sideMenuClass = classNames("side-menu",
     {
@@ -12,11 +16,14 @@ export default function SideMenu(props) {
       "side-menu-profile": props.page === "profile"
     });
 
-  return (
-    <ol className={sideMenuClass}>
-      <SideLink className="side-link-text" text="News" link={"/" + id + "/news"} />
-      <SideLink className="side-link-text" text="Chat" link={"/" + id + "/chat"} />
-      <SideLink className="side-link-text" text="My profile" link={"/" + id + "/my_profile"} />
-    </ol>
-  );
+  if (id !== null)
+    return (
+      <ol className={sideMenuClass}>
+        <SideLink className="side-link-text" text="News" link={"/news"} />
+        <SideLink className="side-link-text" text="Chat" link={"/chat"} />
+        <SideLink className="side-link-text" text="My profile" link={"/my_profile"} />
+      </ol>
+    );
+  else
+    return (<></>);
 }
