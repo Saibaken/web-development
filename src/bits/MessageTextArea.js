@@ -10,8 +10,8 @@ export default function MessageTextArea(props) {
 
     if (messageText !== "") {
       textRef.current.value = "";
-      props.updateMessages();
-      fetch("/sendMessage", {
+
+      await fetch("/sendMessage", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -21,6 +21,8 @@ export default function MessageTextArea(props) {
           messageBody: messageText,
         }),
       });
+
+      await props.updateMessages();
     }
   };
 
