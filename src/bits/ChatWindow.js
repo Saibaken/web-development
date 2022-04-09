@@ -5,40 +5,34 @@ import { v4 } from "uuid";
 
 export default function ChatWindow() {
   const messagesRef = useRef();
-  const [messages, setMessages] = useState([
-    {
-      profileName: "Profile name",
-      text: "Sample text"
-    },
-    {
-      profileName: "Profile name",
-      text: "Sample text"
-    },
-    {
-      profileName: "Profile name",
-      text: "Sample text"
-    },
-    {
-      profileName: "Profile name",
-      text: "Sample text"
-    }
-  ]);
+
+  const [messages, setMessages] = useState([]);
 
   useEffect(() => {
-    setMessages(JSON.parse(localStorage.getItem("messages")));
+    fetch("/getMessages")
+      .then((response) => response.json())
+      .then((messages) => setMessages(messages));
+    messagesRef.current.scrollTop = messagesRef.current.scrollHeight;
   }, []);
 
   useEffect(() => {
-    localStorage.setItem("messages", JSON.stringify(messages));
     messagesRef.current.scrollTop = messagesRef.current.scrollHeight;
   });
+
+  const updateMessages = async () => {
+    await fetch("/getMessages")
+      .then((response) => response.json())
+      .then((messages) => setMessages(messages));
+  };
 
   return (
     <div className="chat-window">
       <div className="messages" ref={messagesRef}>
-        {messages.map(message => <Message key={v4()} author={message.profileName} text={message.text} />)}
+        {messages.map((message) => (
+          <Message key={v4()} author={message.userName} text={message.text} />
+        ))}
       </div>
-      <MessageTextArea messages={messages} setMessages={setMessages} />
+      <MessageTextArea messages={messages} updateMessages={updateMessages} />
     </div>
   );
 }
