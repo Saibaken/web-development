@@ -1,8 +1,14 @@
-import { React, useRef } from "react";
+import { React, useRef, useEffect, useState } from "react";
 import "../stylesheets/LoginPage.css";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Navigate } from "react-router-dom";
 
 export default function RegPage() {
+  const [id, setId] = useState(JSON.parse(localStorage.getItem("id")));
+
+  useEffect(() => {
+    setId(JSON.parse(localStorage.getItem("id")));
+  }, []);
+
   let navigate = useNavigate();
 
   const passwordRef = useRef();
@@ -108,7 +114,7 @@ export default function RegPage() {
       let userInfo = await response.json();
       localStorage.setItem("id", JSON.stringify(userInfo.id));
       localStorage.setItem("userName", JSON.stringify(userInfo.userName));
-      navigate("/" + userInfo.id + "/news");
+      navigate("/news");
     }
   };
 
@@ -121,65 +127,68 @@ export default function RegPage() {
     );
   };
 
-  return (
-    <form
-      className="login-form register"
-      onSubmit={(e) => sendForm(e)}
-      ref={formRef}
-      onInput={(e) => validate(e)}
-    >
-      <label>
-        Login
+  if (id === null)
+    return (
+      <form
+        className="login-form register"
+        onSubmit={(e) => sendForm(e)}
+        ref={formRef}
+        onInput={(e) => validate(e)}
+      >
+        <label>
+          Login
+          <input
+            id="POST-login"
+            type="text"
+            name="login"
+            required
+            minLength={4}
+            maxLength={20}
+            ref={loginRef}
+          />
+        </label>
+        <label>
+          E-mail
+          <input
+            id="POST-email"
+            type="text"
+            name="email"
+            required
+            pattern="^\S+@\S+\.\S+$"
+            ref={emailRef}
+          />
+        </label>
+        <label>
+          Password
+          <input
+            id="POST-password"
+            type="password"
+            name="password"
+            required
+            minLength={8}
+            maxLength={25}
+            pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,25}$"
+            ref={passwordRef}
+          />
+        </label>
+        <label>
+          Confirm password
+          <input
+            id="POST-password-confirm"
+            type="password"
+            name="password-confirm"
+            required
+            ref={confirmRef}
+          />
+        </label>
         <input
-          id="POST-login"
-          type="text"
-          name="login"
-          required
-          minLength={4}
-          maxLength={20}
-          ref={loginRef}
-        />
-      </label>
-      <label>
-        E-mail
-        <input
-          id="POST-email"
-          type="text"
-          name="email"
-          required
-          pattern="^\S+@\S+\.\S+$"
-          ref={emailRef}
-        />
-      </label>
-      <label>
-        Password
-        <input
-          id="POST-password"
-          type="password"
-          name="password"
-          required
-          minLength={8}
-          maxLength={25}
-          pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,25}$"
-          ref={passwordRef}
-        />
-      </label>
-      <label>
-        Confirm password
-        <input
-          id="POST-password-confirm"
-          type="password"
-          name="password-confirm"
-          required
-          ref={confirmRef}
-        />
-      </label>
-      <input
-        disabled={true}
-        type="submit"
-        value="Register"
-        ref={buttonRef}
-      ></input>
-    </form>
-  );
+          disabled={true}
+          type="submit"
+          value="Register"
+          ref={buttonRef}
+        ></input>
+      </form>
+    );
+  else
+    return (<Navigate replace to="/news" />);
 }
