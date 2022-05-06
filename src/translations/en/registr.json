@@ -1,6 +1,5 @@
 {
-    "registr":
-    {
+    "registr": {
         "login": "Login",
         "email": "Email",
         "password": "Password",
