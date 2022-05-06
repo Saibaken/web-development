@@ -1,9 +1,12 @@
 import { React, useRef, useEffect, useState } from "react";
-import "../stylesheets/LoginPage.css";
+import { useTranslation } from "react-i18next";
 import { useNavigate, Navigate } from "react-router-dom";
+
+import "../stylesheets/LoginPage.css";
 
 export default function RegPage() {
   const [id, setId] = useState(JSON.parse(localStorage.getItem("id")));
+  const { t } = useTranslation('registr');
 
   useEffect(() => {
     setId(JSON.parse(localStorage.getItem("id")));
@@ -136,7 +139,7 @@ export default function RegPage() {
         onInput={(e) => validate(e)}
       >
         <label>
-          Login
+          {t('registr.login')}
           <input
             id="POST-login"
             type="text"
@@ -148,7 +151,7 @@ export default function RegPage() {
           />
         </label>
         <label>
-          E-mail
+          {t('registr.email')}
           <input
             id="POST-email"
             type="text"
@@ -159,7 +162,7 @@ export default function RegPage() {
           />
         </label>
         <label>
-          Password
+          {t('registr.password')}
           <input
             id="POST-password"
             type="password"
@@ -172,7 +175,7 @@ export default function RegPage() {
           />
         </label>
         <label>
-          Confirm password
+          {t('registr.confirm_pass')}
           <input
             id="POST-password-confirm"
             type="password"
@@ -184,7 +187,7 @@ export default function RegPage() {
         <input
           disabled={true}
           type="submit"
-          value="Register"
+          value={t('registr.submit')}
           ref={buttonRef}
         ></input>
       </form>
