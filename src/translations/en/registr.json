@@ -1,0 +1,10 @@
+{
+    "registr":
+    {
+        "login": "Login",
+        "email": "Email",
+        "password": "Password",
+        "confirm_pass": "Confirm password",
+        "submit": "Register"
+    }
+}

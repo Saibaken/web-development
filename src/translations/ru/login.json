@@ -1,0 +1,8 @@
+{
+    "login": {
+        "login": "Логин",
+        "password": "Пароль",
+        "submit": "Войти",
+        "create_an_account": "Регистрация"
+    }
+}
