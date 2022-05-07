@@ -48,11 +48,11 @@ export default function RegPage() {
 
   const loginValidityHandler = (field) => {
     if (field.validity.valueMissing) {
-      field.setCustomValidity("Login field must not be empty");
+      field.setCustomValidity(t("errors.value_missing"));
     } else if (field.validity.tooShort) {
-      field.setCustomValidity("Login should be >4 letters");
+      field.setCustomValidity(t("errors.too_short_login"));
     } else if (field.validity.tooLong) {
-      field.setCustomValidity("Login should be <20 letters");
+      field.setCustomValidity(t("errors.too_long_login"));
     } else {
       field.setCustomValidity("");
     }
@@ -60,9 +60,9 @@ export default function RegPage() {
 
   const emailValidityHandler = (field) => {
     if (field.validity.valueMissing) {
-      field.setCustomValidity("Email must not be empty");
+      field.setCustomValidity(t("errors.value_missing"));
     } else if (field.validity.patternMismatch) {
-      field.setCustomValidity("This is not an email address!");
+      field.setCustomValidity(t("errors.pattern_mismatch_email"));
     } else {
       field.setCustomValidity("");
     }
@@ -72,23 +72,19 @@ export default function RegPage() {
     if (passwordRef.current.value === confirmRef.current.value) {
       confirmRef.current.setCustomValidity("");
     } else {
-      confirmRef.current.setCustomValidity(
-        "Passwords should be the same!"
-      );
+      confirmRef.current.setCustomValidity(t("errors.password_repeat"));
     }
   };
 
   const passwordValidityHandler = (field) => {
     if (field.validity.valueMissing) {
-      field.setCustomValidity("Password field must not be empty");
+      field.setCustomValidity(t("errors.value_missing"));
     } else if (field.validity.tooShort) {
-      field.setCustomValidity("Password should be >8 letters");
+      field.setCustomValidity(t("errors.too_short_password"));
     } else if (field.validity.tooLong) {
-      field.setCustomValidity("Password should be <25 letters");
+      field.setCustomValidity(t("errors.too_long_password"));
     } else if (field.validity.patternMismatch) {
-      field.setCustomValidity(
-        "Password should contain at least 1 letter and 1 number"
-      );
+      field.setCustomValidity(t("errors.pattern_mismatch_password"));
     } else {
       field.setCustomValidity("");
     }
@@ -112,7 +108,7 @@ export default function RegPage() {
       });
 
     if (!response.ok)
-      alert("Пользователь с таким email уже существует");
+      alert(t("errors.email_exists"));
     else {
       let userInfo = await response.json();
       localStorage.setItem("id", JSON.stringify(userInfo.id));

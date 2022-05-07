@@ -32,9 +32,9 @@ export default function LoginPage() {
 
   const validateLogin = (field) => {
     if (field.validity.patternMismatch) {
-      field.setCustomValidity("Must be email");
+      field.setCustomValidity(t("errors.pattern_mismatch_email"));
     } else if (field.validity.valueMissing) {
-      field.setCustomValidity("Must not be empty");
+      field.setCustomValidity(t("errors.value_missing"));
     } else {
       field.setCustomValidity("");
     }
@@ -42,16 +42,11 @@ export default function LoginPage() {
 
   const validatePassword = (field) => {
     if (field.validity.valueMissing) {
-      field.setCustomValidity("Must not be empty");
+      field.setCustomValidity(t("errors.value_missing"));
     } else if (field.validity.patternMismatch) {
-      field.setCustomValidity(
-        "A password must contain at least " +
-        "1 lower case letter, 1 upper case letter and 1 number"
-      );
+      field.setCustomValidity(t("errors.pattern_mismatch_password"));
     } else if (field.validity.tooShort) {
-      field.setCustomValidity(
-        "A password must contain at least 8 symbols long"
-      );
+      field.setCustomValidity(t("errors.too_short"));
     } else {
       field.setCustomValidity("");
     }
@@ -73,7 +68,7 @@ export default function LoginPage() {
       });
 
     if (!response.ok)
-      alert("Неправильное имя пользователя или пароль")
+      alert(t("errors.incorrect_login"))
     else {
       let userInfo = await response.json();
       localStorage.setItem("id", JSON.stringify(userInfo.id));
