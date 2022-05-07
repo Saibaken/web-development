@@ -1,0 +1,12 @@
+{
+    "chat": {
+        "chat_header": "Чат"
+    },
+    "news": {
+        "news_header" : "Новости"
+    },
+    "profile": {
+        "my_profile": "Мой профиль",
+        "log_out": "Выход"
+    }
+}
