@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import SideLink from "./SideLink";
 import classNames from "classnames";
+import { useTranslation } from "react-i18next";
 
 export default function SideMenu(props) {
   const [id, setId] = useState(JSON.parse(localStorage.getItem("id")));
+  const { t } = useTranslation('side_menu');
 
   useEffect(() => {
     setId(JSON.parse(localStorage.getItem("id")));
@@ -19,9 +21,9 @@ export default function SideMenu(props) {
   if (id !== null)
     return (
       <ol className={sideMenuClass}>
-        <SideLink className="side-link-text" text="News" link={"/news"} />
-        <SideLink className="side-link-text" text="Chat" link={"/chat"} />
-        <SideLink className="side-link-text" text="My profile" link={"/my_profile"} />
+        <SideLink className="side-link-text" text={t("menu.news")} link={"/news"} />
+        <SideLink className="side-link-text" text={t("menu.chat")} link={"/chat"} />
+        <SideLink className="side-link-text" text={t("menu.my_profile")} link={"/my_profile"} />
       </ol>
     );
   else
