@@ -12,10 +12,15 @@ import i18next from 'i18next';
 // Ru
 import login_ru from './translations/ru/login.json';
 import registr_ru from './translations/ru/registr.json';
+import pages_ru from './translations/ru/pages.json';
+import side_menu_ru from './translations/ru/side_menu.json'
 
 //En
 import login_en from './translations/en/login.json';
 import registr_en from './translations/en/registr.json';
+import pages_en from './translations/en/pages.json';
+import side_menu_en from './translations/en/side_menu.json'
+
 
 // Инициализация i18next
 i18next.init({
@@ -24,11 +29,15 @@ i18next.init({
   resources: {
     en: {
       login: login_en,
-      registr: registr_en
+      registr: registr_en,
+      pages: pages_en,
+      side_menu: side_menu_en
     },
     ru: {
       login: login_ru,
-      registr: registr_ru
+      registr: registr_ru,
+      pages: pages_ru,
+      side_menu: side_menu_ru
     },
   },
 });
