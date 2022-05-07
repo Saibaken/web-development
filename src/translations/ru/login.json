@@ -4,5 +4,12 @@
         "password": "Пароль",
         "submit": "Войти",
         "create_an_account": "Регистрация"
+    },
+    "errors": {
+        "value_missing": "Поле не должно быть пустым",
+        "pattern_mismatch_email": "Поле должно быть email",
+        "pattern_mismatch_password": "Пароль должен содержать 1 строчную букву, 1 прописную букву и 1 цифру",
+        "too_short": "Пароль должен быть длиной не менее 8 символов",
+        "incorrect_login": "Неправильный логин или пароль"
     }
 }

@@ -5,5 +5,17 @@
         "password": "Password",
         "confirm_pass": "Confirm password",
         "submit": "Register"
+    },
+    "errors": {
+        "value_missing": "Must not be empty",
+        "too_short_login": "Login should be >4 letters",
+        "too_long_login":"Login should be <20 letters",
+        "password_repeat": "Passwords should be the same",
+        "too_short_password": "Password should be >8 letters",
+        "too_long_password": "Password should be <25 letters",
+        "pattern_mismatch_password": "A password must contain at least 1 lower case letter, 1 upper case letter and 1 number",
+        "pattern_mismatch_email": "Must be email",
+        "email_exists": "User with this email already exists",
+        "incorrect_login": "Wrong login or password"
     }
 }

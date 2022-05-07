@@ -1,9 +1,11 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 
 export default function ProfileCard() {
   const navigate = useNavigate();
   const userName = JSON.parse(localStorage.getItem("userName"));
+  const { t } = useTranslation("pages");
 
   const onLogOut = () => {
     localStorage.removeItem("id");
@@ -25,7 +27,7 @@ export default function ProfileCard() {
 
       </div>
       <button className="log-out-button" onClick={onLogOut}>
-        Log Out
+        {t("profile.log_out")}
       </button>
     </div>
   );

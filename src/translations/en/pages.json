@@ -1,0 +1,13 @@
+{
+    "chat": {
+        "chat_header": "Chat",
+        "send": "Send"
+    },
+    "news": {
+        "news_header" : "News"
+    },
+    "profile": {
+        "my_profile": "My profile",
+        "log_out": "Log out"
+    }
+}

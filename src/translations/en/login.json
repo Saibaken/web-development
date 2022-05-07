@@ -4,5 +4,12 @@
         "password": "Password",
         "submit": "Login",
         "create_an_account": "Create an account"
+    },
+    "errors": {
+        "value_missing": "Must not be empty",
+        "pattern_mismatch_email": "Must be email",
+        "pattern_mismatch_password": "A password must contain at least 1 lower case letter, 1 upper case letter and 1 number",
+        "too_short": "A password must contain at least 8 symbols long",
+        "incorrect_login": "Wrong login or password"
     }
 }
