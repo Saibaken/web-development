@@ -1,10 +1,12 @@
 import { React, useRef, useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import "../stylesheets/LoginPage.css";
 
 export default function LoginPage() {
   const [id, setId] = useState(JSON.parse(localStorage.getItem("id")));
-
+  const { t } = useTranslation('login');
+  
   useEffect(() => {
     setId(JSON.parse(localStorage.getItem("id")));
   }, []);
@@ -88,7 +90,7 @@ export default function LoginPage() {
         onInput={(event) => validate(event)}
       >
         <label>
-          Login
+          {t("login.login")}
           <input
             required
             id="POST-login"
@@ -99,7 +101,7 @@ export default function LoginPage() {
           />
         </label>
         <label>
-          Password
+          {t("login.password")}
           <input
             required
             id="POST-password"
@@ -110,10 +112,10 @@ export default function LoginPage() {
             ref={passRef}
           />
         </label>
-        <input type="submit" value="Login"></input>
-        <Link to="/registration">Create an account</Link>
+        <input type="submit" value={t("login.submit")}></input>
+        <Link to="/registration">{t("login.create_an_account")}</Link>
       </form>
     );
   else
-      return(<Navigate replace to = "/news"/>);
+    return (<Navigate replace to="/news" />);
 }
