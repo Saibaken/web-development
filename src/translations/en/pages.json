@@ -1,6 +1,7 @@
 {
     "chat": {
-        "chat_header": "Chat"
+        "chat_header": "Chat",
+        "send": "Send"
     },
     "news": {
         "news_header" : "News"

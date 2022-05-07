@@ -1,7 +1,9 @@
 import React, { useRef } from "react";
+import { useTranslation } from "react-i18next";
 
 export default function MessageTextArea(props) {
   const textRef = useRef();
+  const { t }  = useTranslation('pages');
 
   const sendMessage = async (e) => {
     e.preventDefault();
@@ -30,7 +32,7 @@ export default function MessageTextArea(props) {
     <form className="message-text-area" onSubmit={sendMessage}>
       <input className="text-area" type="text" ref={textRef}></input>
       <button className="send-button" onClick={sendMessage}>
-        Send
+        {t("chat.send")}
       </button>
     </form>
   );
