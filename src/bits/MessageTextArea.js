@@ -8,7 +8,7 @@ export default function MessageTextArea(props) {
   const sendMessage = async (e) => {
     e.preventDefault();
     let messageText = textRef.current.value;
-    let userName = localStorage.getItem("userName").split('"').join("");
+    let userName = sessionStorage.getItem("userName").split('"').join("");
 
     if (messageText !== "") {
       textRef.current.value = "";

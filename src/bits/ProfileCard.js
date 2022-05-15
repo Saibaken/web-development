@@ -4,12 +4,12 @@ import { useNavigate } from "react-router-dom";
 
 export default function ProfileCard() {
   const navigate = useNavigate();
-  const userName = JSON.parse(localStorage.getItem("userName"));
+  const userName = JSON.parse(sessionStorage.getItem("userName"));
   const { t } = useTranslation("pages");
 
   const onLogOut = () => {
-    localStorage.removeItem("id");
-    localStorage.removeItem("userName");
+    sessionStorage.removeItem("id");
+    sessionStorage.removeItem("userName");
     navigate("/");
   };
 
