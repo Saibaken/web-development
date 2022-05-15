@@ -5,10 +5,10 @@ import { useTranslation } from "react-i18next";
 
 
 function NewsPage() {
-  const [id, setId] = useState(JSON.parse(localStorage.getItem("id")));
+  const [id, setId] = useState(JSON.parse(sessionStorage.getItem("id")));
   const { t } = useTranslation('pages');
   useEffect(() => {
-    setId(JSON.parse(localStorage.getItem("id")));
+    setId(JSON.parse(sessionStorage.getItem("id")));
   }, []);
 
   if (id !== null)

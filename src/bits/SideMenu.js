@@ -4,11 +4,11 @@ import classNames from "classnames";
 import { useTranslation } from "react-i18next";
 
 export default function SideMenu(props) {
-  const [id, setId] = useState(JSON.parse(localStorage.getItem("id")));
+  const [id, setId] = useState(JSON.parse(sessionStorage.getItem("id")));
   const { t } = useTranslation('side_menu');
 
   useEffect(() => {
-    setId(JSON.parse(localStorage.getItem("id")));
+    setId(JSON.parse(sessionStorage.getItem("id")));
   }, []);
 
   const sideMenuClass = classNames("side-menu",

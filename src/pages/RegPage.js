@@ -5,11 +5,11 @@ import { useNavigate, Navigate } from "react-router-dom";
 import "../stylesheets/LoginPage.css";
 
 export default function RegPage() {
-  const [id, setId] = useState(JSON.parse(localStorage.getItem("id")));
+  const [id, setId] = useState(JSON.parse(sessionStorage.getItem("id")));
   const { t } = useTranslation('registr');
 
   useEffect(() => {
-    setId(JSON.parse(localStorage.getItem("id")));
+    setId(JSON.parse(sessionStorage.getItem("id")));
   }, []);
 
   let navigate = useNavigate();
@@ -111,8 +111,8 @@ export default function RegPage() {
       alert(t("errors.email_exists"));
     else {
       let userInfo = await response.json();
-      localStorage.setItem("id", JSON.stringify(userInfo.id));
-      localStorage.setItem("userName", JSON.stringify(userInfo.userName));
+      sessionStorage.setItem("id", JSON.stringify(userInfo.id));
+      sessionStorage.setItem("userName", JSON.stringify(userInfo.userName));
       navigate("/news");
     }
   };

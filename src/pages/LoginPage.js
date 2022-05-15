@@ -4,11 +4,11 @@ import { Link, Navigate, useNavigate } from "react-router-dom";
 import "../stylesheets/LoginPage.css";
 
 export default function LoginPage() {
-  const [id, setId] = useState(JSON.parse(localStorage.getItem("id")));
+  const [id, setId] = useState(JSON.parse(sessionStorage.getItem("id")));
   const { t } = useTranslation('login');
   
   useEffect(() => {
-    setId(JSON.parse(localStorage.getItem("id")));
+    setId(JSON.parse(sessionStorage.getItem("id")));
   }, []);
 
   let navigate = useNavigate();
@@ -71,8 +71,8 @@ export default function LoginPage() {
       alert(t("errors.incorrect_login"))
     else {
       let userInfo = await response.json();
-      localStorage.setItem("id", JSON.stringify(userInfo.id));
-      localStorage.setItem("userName", JSON.stringify(userInfo.userName));
+      sessionStorage.setItem("id", JSON.stringify(userInfo.id));
+      sessionStorage.setItem("userName", JSON.stringify(userInfo.userName));
       navigate("/news");
     }
   };
