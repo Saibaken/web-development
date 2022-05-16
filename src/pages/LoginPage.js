@@ -55,7 +55,7 @@ export default function LoginPage() {
   const sendForm = async (e) => {
     e.preventDefault();
 
-    let response = await fetch("/login",
+    let response = await fetch("auth/login",
       {
         method: "POST",
         headers: {
