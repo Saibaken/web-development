@@ -13,7 +13,7 @@ export default function MessageTextArea(props) {
     if (messageText !== "") {
       textRef.current.value = "";
 
-      await fetch("/sendMessage", {
+      await fetch("messages/sendMessage", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

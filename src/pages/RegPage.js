@@ -94,7 +94,7 @@ export default function RegPage() {
   const sendForm = async (e) => {
     e.preventDefault();
 
-    let response = await fetch("/registration",
+    let response = await fetch("auth/registration",
       {
         method: "POST",
         headers: {

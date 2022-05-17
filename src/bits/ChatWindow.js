@@ -9,7 +9,7 @@ export default function ChatWindow() {
   const [messages, setMessages] = useState([]);
 
   useEffect(() => {
-    fetch("/getMessages")
+    fetch("messages/getMessages")
       .then((response) => response.json())
       .then((messages) => setMessages(messages));
     messagesRef.current.scrollTop = messagesRef.current.scrollHeight;
@@ -20,7 +20,7 @@ export default function ChatWindow() {
   });
 
   const updateMessages = async () => {
-    await fetch("/getMessages")
+    await fetch("messages/getMessages")
       .then((response) => response.json())
       .then((messages) => setMessages(messages));
   };
