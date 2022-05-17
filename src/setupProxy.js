@@ -1,9 +1,11 @@
 const { createProxyMiddleware } = require('http-proxy-middleware');
+const dotenv = require('dotenv');
 
 module.exports = function (app) {
+    const env = dotenv.config().parsed;
     app.use(
         createProxyMiddleware('/messages', {
-            target: 'http://merosya.ru:81',
+            target: env.MESSAGES_SERVICE_URL,
             changeOrigin: true,
             pathRewrite: {
                 "^/messages": "",
@@ -15,7 +17,7 @@ module.exports = function (app) {
     );
     app.use(
         createProxyMiddleware('/auth', {
-            target: 'http://merosya.ru:82',
+            target: env.AUTH_SERVICE_URL,
             changeOrigin: true,
             pathRewrite: {
                 "^/auth": "",
