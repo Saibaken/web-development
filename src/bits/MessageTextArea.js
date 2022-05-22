@@ -13,7 +13,7 @@ export default function MessageTextArea(props) {
     if (messageText !== "") {
       textRef.current.value = "";
 
-      await fetch("messages/sendMessage", {
+      await fetch(process.env.REACT_APP_API_URL + "api/v1/messaging/sendMessage", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
