@@ -9,7 +9,7 @@ export default function ChatWindow() {
   const [messages, setMessages] = useState([]);
 
   useEffect(() => {
-    fetch("messages/getMessages")
+    fetch(process.env.REACT_APP_API_URL + "api/v1/messaging/getMessages")
       .then((response) => response.json())
       .then((messages) => setMessages(messages));
     messagesRef.current.scrollTop = messagesRef.current.scrollHeight;
@@ -20,7 +20,7 @@ export default function ChatWindow() {
   });
 
   const updateMessages = async () => {
-    await fetch("messages/getMessages")
+    await fetch(process.env.REACT_APP_API_URL + "api/v1/messaging/getMessages")
       .then((response) => response.json())
       .then((messages) => setMessages(messages));
   };

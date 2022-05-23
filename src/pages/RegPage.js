@@ -94,7 +94,7 @@ export default function RegPage() {
   const sendForm = async (e) => {
     e.preventDefault();
 
-    let response = await fetch("auth/registration",
+    let response = await fetch(process.env.REACT_APP_API_URL + "api/v1/auth/registration",
       {
         method: "POST",
         headers: {
