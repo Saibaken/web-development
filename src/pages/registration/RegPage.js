@@ -1,11 +1,12 @@
+import "../../stylesheets/LoginPage.css";
+
 import { React, useRef, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate, Navigate } from "react-router-dom";
 
-import "../stylesheets/LoginPage.css";
-
 export default function RegPage() {
   const [id, setId] = useState(JSON.parse(sessionStorage.getItem("id")));
+  
   const { t } = useTranslation('registr');
 
   useEffect(() => {

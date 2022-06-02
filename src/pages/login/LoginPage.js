@@ -1,10 +1,11 @@
+import "../../stylesheets/LoginPage.css";
 import { React, useRef, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Link, Navigate, useNavigate } from "react-router-dom";
-import "../stylesheets/LoginPage.css";
 
 export default function LoginPage() {
   const [id, setId] = useState(JSON.parse(sessionStorage.getItem("id")));
+
   const { t } = useTranslation('login');
   
   useEffect(() => {
@@ -12,12 +13,12 @@ export default function LoginPage() {
   }, []);
 
   let navigate = useNavigate();
+
   const loginRef = useRef();
   const passRef = useRef();
-
+  
   const validate = (e) => {
     const name = e.target.name;
-
     switch (name) {
       case "login":
         validateLogin(e.target);

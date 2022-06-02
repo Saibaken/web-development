@@ -1,18 +1,18 @@
+import "../../stylesheets/Chat.css"
 import React, { useRef } from "react";
 import { useTranslation } from "react-i18next";
 
-export default function MessageTextArea(props) {
+export default function MessageForm(props) {
   const textRef = useRef();
-  const { t }  = useTranslation('pages');
+
+  const { t } = useTranslation('pages');
 
   const sendMessage = async (e) => {
     e.preventDefault();
     let messageText = textRef.current.value;
     let userName = sessionStorage.getItem("userName").split('"').join("");
-
     if (messageText !== "") {
       textRef.current.value = "";
-
       await fetch(process.env.REACT_APP_API_URL + "api/v1/messaging/sendMessage", {
         method: "POST",
         headers: {
@@ -23,7 +23,6 @@ export default function MessageTextArea(props) {
           messageBody: messageText,
         }),
       });
-
       await props.updateMessages();
     }
   };
