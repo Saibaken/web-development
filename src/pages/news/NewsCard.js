@@ -1,3 +1,4 @@
+import "../../stylesheets/News.css";
 import React from "react";
 
 export default function NewsCard(props) {
@@ -51,7 +52,10 @@ export default function NewsCard(props) {
         {props.video ? (
           <div className="news-image">
             <video width="300" controls>
-              <source src="https://media.istockphoto.com/videos/celebration-fireworks-in-the-night-sky-with-the-sound-of-clapping-and-video-id530785590" type="video/mp4" />
+              <source
+                src="https://media.istockphoto.com/videos/celebration-fireworks-in-the-night-sky-with-the-sound-of-clapping-and-video-id530785590"
+                type="video/mp4"
+              />
             </video>
           </div>
         ) : (

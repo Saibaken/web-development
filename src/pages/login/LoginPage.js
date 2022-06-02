@@ -1,10 +1,11 @@
+import "../../stylesheets/LoginPage.css";
 import { React, useRef, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Link, Navigate, useNavigate } from "react-router-dom";
-import "../stylesheets/LoginPage.css";
 
 export default function LoginPage() {
   const [id, setId] = useState(JSON.parse(sessionStorage.getItem("id")));
+
   const { t } = useTranslation('login');
   
   useEffect(() => {
@@ -12,12 +13,12 @@ export default function LoginPage() {
   }, []);
 
   let navigate = useNavigate();
+
   const loginRef = useRef();
   const passRef = useRef();
-
+  
   const validate = (e) => {
     const name = e.target.name;
-
     switch (name) {
       case "login":
         validateLogin(e.target);
@@ -103,7 +104,7 @@ export default function LoginPage() {
             type="password"
             name="password"
             minLength={8}
-            pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{0,}$"
+            pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,25}$"
             ref={passRef}
           />
         </label>
