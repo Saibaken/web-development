@@ -104,7 +104,7 @@ export default function LoginPage() {
             type="password"
             name="password"
             minLength={8}
-            pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{0,}$"
+            pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,25}$"
             ref={passRef}
           />
         </label>
